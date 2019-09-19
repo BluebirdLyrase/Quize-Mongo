@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <% include ../partials/head %>
+</head>
+
+<body>
+    <% include ../partials/header %>
+    <div class="container">
+        <h1><%= detail.subject_id %></h1>
+        <h5><%= detail.subject_name %></h5>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>StudentID</th>
+                    <th>Studentname</th>
+                    <th>Major</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Class in java script shount be ant key for data -->
+                <% detail.students.forEach(function(s){  %>
+                <tr>
+                    <td><%= s.sid %></td>
+                    <td><%= s.name %></td>
+                    <td><%= s.major %></td>
+
+                </tr>
+                <% }); %></h2>
+            </tbody>
+        </table>
+    </div>
+    <footer>
+        <% include ../partials/footer %>
+    </footer>
+
+</body>
+
+</html>

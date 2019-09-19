@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <% include ../partials/head %>
+</head>
+
+<body>
+    <% include ../partials/header %>
+    <div class="container">
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>SubjectID</th>
+                    <th>Subjectname</th>
+                    <th>Room</th>
+                    <th>Schedule</th>
+                    <th>Lecturer</th>
+                </tr>
+            </thead>
+            <tbody>
+                        <!-- Class in java script shount be ant key for data -->
+                <% classes.forEach(function(thisclasses){  %>
+                <tr>
+                    <td><a href="/classdetail/<%= thisclasses.subject_id %>"><%= thisclasses.subject_id %></a></td>
+                    <td><%= thisclasses.subject_name %></td>
+                    <td><%= thisclasses.room %></td>
+                    <td><%= thisclasses.schedule %></td>
+                    <td><%= thisclasses.lecturer %></td>
+                </tr>
+                <% }); %></h2>
+
+
+
+            </tbody>
+        </table>
+    </div>
+    <footer>
+        <% include ../partials/footer %>
+    </footer>
+
+</body>
+
+</html>
