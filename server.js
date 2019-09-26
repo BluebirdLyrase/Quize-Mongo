@@ -2,7 +2,6 @@
 // load the things we need
 var express = require('express');
 var app = express();
-var data = require("./data.json")
 // set up Mongo
 var mongo = require("mongodb");
 var MongoClient = require('mongodb').MongoClient;
@@ -83,5 +82,5 @@ app.get('/classdetail/:id', function (req, res) {
 });
 
 app.listen(8080);
-console.log('MAGIC MAGIC MAGIC MAGIC MAGIC');
+console.log('port : 8080');
 
