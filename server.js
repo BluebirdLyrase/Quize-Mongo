@@ -7,9 +7,11 @@ var mongo = require("mongodb");
 var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb://localhost:27017/";
 var options = { useUnifiedTopology: true, useNewUrlParser: true };
+///////////////////bodyParser/////////////////////////
 var bodyParser = require('body-parser')
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+//////////////////////////////////////////////////
 // set the view engine to ejs
 app.set('view engine', 'ejs');
 
@@ -101,13 +103,13 @@ app.get('/classedit/:id', function (req, res) {
 
 });
 
-app.post("/classsave/:id", function (req, res) {
+app.post("/classsave", function (req, res) {
     var id = req.body.id;
     var name = req.body.name;
     var room = req.body.room;
     var schedule = req.body.schedule;
     var lecturer = req.body.lecturer;
-    console.log(id + name + room + schedule + lecturer);
+    // console.log(id + name + room + schedule + lecturer);
 
     MongoClient.connect(url, function (err, db) {
         if (err) throw err;
