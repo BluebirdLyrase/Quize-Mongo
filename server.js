@@ -17,13 +17,36 @@ app.set('view engine', 'ejs');
 // use res.render to load up an ejs view file
 
 // index page 
-app.get('/', function (req, res) {
-    res.render('pages/Home', { thisdata: data });
-});
+    app.get('/', function (req, res) {
+        MongoClient.connect(url, options, function (err, db) {
+            if (err) throw err;
+            var dbo = db.db("coc");
+            var query = {};
+            dbo.collection("data")
+            .findOne({}, function(err, result) {
+                    if (err) throw err;
+                    // console.log(result);
+                    res.render('pages/Home', { thisdata: result });
+                    db.close();
+                });
+        });
+    });
 
 // about page 
+
 app.get('/Student', function (req, res) {
-    res.render('pages/Student', { thisdata: data });
+    MongoClient.connect(url, options, function (err, db) {
+        if (err) throw err;
+        var dbo = db.db("coc");
+        var query = {};
+        dbo.collection("data")
+        .findOne({}, function(err, result) {
+                if (err) throw err;
+                // console.log(result);
+                res.render('pages/Student', { thisdata : result });
+                db.close();
+            });
+    });
 });
 
 app.get('/class', function (req, res) {
