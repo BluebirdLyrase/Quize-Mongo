@@ -136,6 +136,61 @@ app.post("/classsave", function (req, res) {
     res.redirect("/class");
 });
 
+
+
+
+app.get('/classAdd', function (req, res) {
+    res.render('pages/classAdd');
+
+});
+
+app.post("/classsaveAs", function (req, res) {
+    var id = req.body.id;
+    var name = req.body.name;
+    var room = req.body.room;
+    var schedule = req.body.schedule;
+    var lecturer = req.body.lecturer;
+    // console.log(id + name + room + schedule + lecturer);
+
+    MongoClient.connect(url, function (err, db) {
+        if (err) throw err;
+        var dbo = db.db("coc");
+        /////////Set value///////////////
+        var newclass = {
+                subject_id: id,
+                subject_name: name,
+                room: [room],
+                schedule: [schedule],
+                lecturer: lecturer,
+        };
+
+        dbo.collection("classroom")
+            .insertOne(newclass, function (err, res) {
+                if (err) throw err;
+                console.log("1 document inserted");
+                db.close();
+            });
+    });
+    res.redirect("/class");
+});
+
+app.get('/classdel/:id', function (req, res) {
+    var classid = req.params.id;
+    MongoClient.connect(url, options, function (err, db) {
+        if (err) throw err;
+        var dbo = db.db("coc");
+        var query = { subject_id: classid };
+        dbo.collection("classroom")
+            .deleteOne(query, function (err, result) {
+                if (err) throw err;
+                console.log(result);
+                // console.log(classid);
+                res.redirect("/class");
+                db.close();
+            });
+    });
+});
+
 app.listen(8080);
 console.log('port : 8080');
 

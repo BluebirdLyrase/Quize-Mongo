@@ -28,14 +28,16 @@
                     <td><%= thisclasses.schedule %></td>
                     <td><%= thisclasses.lecturer %></td>
                     <td><a name="" id="" class="btn btn-primary" href="/classedit/<%= thisclasses.subject_id %>" role="button">Edit</a></td>
+                    <td><a name="" id="" class="btn btn-primary" href="/classdel/<%= thisclasses.subject_id %>" role="button">Delete</a></td>
                 </tr>
                 <% }); %></h2>
-
 
 
             </tbody>
         </table>
     </div>
+    
+    <center><a name="" id="" class="btn btn-primary" href="/classAdd" role="button">Add new Class</a></center>
     <footer>
         <% include ../partials/footer %>
     </footer>
